@@ -1,2 +1,3 @@
 pipeline/benchmarks/hotspots_bench
 dpdk_fstack/src/fstack_nginx_runner
+real_tests/real_live_benchmark real_tests/real_cpu_hardware_bench
