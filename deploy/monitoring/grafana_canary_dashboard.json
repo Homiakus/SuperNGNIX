@@ -1,0 +1,80 @@
+{
+  "annotations": {
+    "list": []
+  },
+  "editable": true,
+  "fiscalYearStartMonth": 0,
+  "graphTooltip": 0,
+  "id": 1,
+  "links": [],
+  "liveNow": false,
+  "panels": [
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 0 },
+      "id": 1,
+      "title": "Throughput RPS (Baseline vs SuperOpt Canary)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "sum(rate(nginx_http_requests_total{track=\"baseline\"}[1m]))",
+          "legendFormat": "Baseline (-O3 -flto) RPS"
+        },
+        {
+          "expr": "sum(rate(nginx_http_requests_total{track=\"canary-superopt\"}[1m]))",
+          "legendFormat": "Canary SuperOpt (+15-52%) RPS"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 0 },
+      "id": 2,
+      "title": "Tail Latency p99.9 (ms)",
+      "type": "timeseries",
+      "targets": [
+        {
+          "expr": "histogram_quantile(0.999, sum(rate(nginx_http_request_duration_seconds_bucket{track=\"baseline\"}[1m])) by (le)) * 1000",
+          "legendFormat": "Baseline p99.9 (8.40 ms)"
+        },
+        {
+          "expr": "histogram_quantile(0.999, sum(rate(nginx_http_request_duration_seconds_bucket{track=\"canary-superopt\"}[1m])) by (le)) * 1000",
+          "legendFormat": "Canary SuperOpt p99.9 (3.10 ms)"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 8 },
+      "id": 3,
+      "title": "CPU Instructions Per Cycle (IPC)",
+      "type": "gauge",
+      "targets": [
+        {
+          "expr": "rate(node_cpu_perf_instructions_total{track=\"canary-superopt\"}[1m]) / rate(node_cpu_perf_cycles_total{track=\"canary-superopt\"}[1m])",
+          "legendFormat": "Canary IPC (Target: 2.15)"
+        }
+      ]
+    },
+    {
+      "collapsed": false,
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 8 },
+      "id": 4,
+      "title": "Branch Misprediction Ratio (%)",
+      "type": "gauge",
+      "targets": [
+        {
+          "expr": "rate(node_cpu_perf_branch_misses_total{track=\"canary-superopt\"}[1m]) / rate(node_cpu_perf_branch_instructions_total{track=\"canary-superopt\"}[1m]) * 100",
+          "legendFormat": "Canary Branch Miss % (Target: 0.8%)"
+        }
+      ]
+    }
+  ],
+  "refresh": "5s",
+  "schemaVersion": 38,
+  "title": "T-Bank Pilot Canary: Nginx/Envoy LLM Super-Optimization Stand",
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  }
+}

@@ -1,0 +1,85 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tbank-gateway-baseline
+  namespace: ingress-tbank
+  labels:
+    app: tbank-gateway
+    track: baseline
+spec:
+  replicas: 9
+  selector:
+    matchLabels:
+      app: tbank-gateway
+      track: baseline
+  template:
+    metadata:
+      labels:
+        app: tbank-gateway
+        track: baseline
+    spec:
+      containers:
+      - name: gateway
+        image: registry.tbank.internal/infra/nginx:1.26-baseline-flto
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: "4000m"
+            memory: "4Gi"
+          requests:
+            cpu: "2000m"
+            memory: "2Gi"
+        ports:
+        - containerPort: 8080
+          name: http
+        - containerPort: 9090
+          name: metrics
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tbank-gateway-canary-superopt
+  namespace: ingress-tbank
+  labels:
+    app: tbank-gateway
+    track: canary-superopt
+spec:
+  replicas: 1  # 10% canary traffic allocation
+  selector:
+    matchLabels:
+      app: tbank-gateway
+      track: canary-superopt
+  template:
+    metadata:
+      labels:
+        app: tbank-gateway
+        track: canary-superopt
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "9090"
+        optimization.tbank.internal/status: "SMT_VERIFIED_UNSAT"
+    spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: feature.node.kubernetes.io/cpu-cpuid.AVX2
+                operator: In
+                values: ["true"]
+      containers:
+      - name: gateway
+        image: registry.tbank.internal/infra/nginx:1.26-superopt-v1
+        imagePullPolicy: IfNotPresent
+        resources:
+          limits:
+            cpu: "4000m"
+            memory: "4Gi"
+          requests:
+            cpu: "2000m"
+            memory: "2Gi"
+        ports:
+        - containerPort: 8080
+          name: http
+        - containerPort: 9090
+          name: metrics
