@@ -15,11 +15,13 @@ from pipeline.orchestrator import PipelineOrchestrator
 def main():
     parser = argparse.ArgumentParser(description="T-Bank Nginx & Envoy Super-Optimization Stand")
     parser.add_argument("--target", choices=["nginx", "envoy", "all"], default="all", help="Target binary to optimize")
+    parser.add_argument("--all", action="store_true", help="Optimize all target binaries (alias for --target all)")
     parser.add_argument("--workspace", default=".", help="Workspace path")
     args = parser.parse_args()
 
     orchestrator = PipelineOrchestrator(os.path.abspath(args.workspace))
-    targets = ["nginx", "envoy"] if args.target == "all" else [args.target]
+    target_choice = "all" if args.all else args.target
+    targets = ["nginx", "envoy"] if target_choice == "all" else [target_choice]
 
     print("=" * 80)
     print("🚀 T-BANK LLM BINARY SUPER-OPTIMIZATION PIPELINE (NGINX & ENVOY PROXY)")
