@@ -10,7 +10,7 @@ from pipeline.orchestrator import PipelineOrchestrator
 
 def run_ci_cd_stage1():
     print("================================================================================")
-    print("🚀 T-BANK CI/CD AUTOMATED GATEWAY: PHASE 1 BINARY SUPER-OPTIMIZATION")
+    print("🚀 EDGE-GATEWAY CI/CD AUTOMATED GATEWAY: PHASE 1 BINARY SUPER-OPTIMIZATION")
     print("================================================================================")
     workspace = os.path.abspath(".")
     orchestrator = PipelineOrchestrator(workspace)
@@ -30,7 +30,7 @@ def run_ci_cd_stage1():
 
     # 3. Emit Pilot Release Manifest
     manifest = {
-        "release_tag": "v1.0.0-tbank-superopt",
+        "release_tag": "v1.0.0-edgegate-superopt",
         "compliance": "Zero-Source-Code-Required (NDA Compliant)",
         "formal_verification": "100% BITWISE EQUIVALENCE PROVEN (Z3 UNSAT)",
         "binaries": {
@@ -66,7 +66,7 @@ def run_ci_cd_stage1():
     print(f"[+] Canary Kubernetes Spec Ready: deploy/canary/canary_deployment.yaml")
     print(f"[+] Grafana Pilot Monitoring Ready: deploy/monitoring/grafana_canary_dashboard.json")
     print("================================================================================")
-    print("✅ PHASE 1 PILOT PACKAGE COMPLETED: READY FOR 2-WEEK T-BANK CANARY ROLLOUT")
+    print("✅ PHASE 1 PILOT PACKAGE COMPLETED: READY FOR 2-WEEK EDGE-GATEWAY CANARY ROLLOUT")
     print("================================================================================")
 
 if __name__ == "__main__":

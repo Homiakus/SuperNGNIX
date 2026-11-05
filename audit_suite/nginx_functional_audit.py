@@ -118,7 +118,7 @@ class NginxFunctionalAuditor:
                 title="7. Наблюдаемость, Логирование и Отладка (GDB / Core Dumps)",
                 standard_features=[
                     "access_log и error_log с микросекундными таймстемпами",
-                    "OpenTelemetry / Jaeger трассировка (X-TBank-Trace-Id, X-Request-Id)",
+                    "OpenTelemetry / Jaeger трассировка (X-Gateway-Trace-Id, X-Request-Id)",
                     "Экспорт метрик Prometheus (stub_status, nginx-prometheus-exporter)",
                     "Валидный backtrace() и Core Dumps при аварийных сбоях (DWARF CFI / .eh_frame)"
                 ],

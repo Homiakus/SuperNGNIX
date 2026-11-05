@@ -13,7 +13,7 @@ import json
 from pipeline.orchestrator import PipelineOrchestrator
 
 def main():
-    parser = argparse.ArgumentParser(description="T-Bank Nginx & Envoy Super-Optimization Stand")
+    parser = argparse.ArgumentParser(description="EdgeGateway Nginx & Envoy Super-Optimization Stand")
     parser.add_argument("--target", choices=["nginx", "envoy", "all"], default="all", help="Target binary to optimize")
     parser.add_argument("--all", action="store_true", help="Optimize all target binaries (alias for --target all)")
     parser.add_argument("--workspace", default=".", help="Workspace path")
@@ -24,7 +24,7 @@ def main():
     targets = ["nginx", "envoy"] if target_choice == "all" else [target_choice]
 
     print("=" * 80)
-    print("🚀 T-BANK LLM BINARY SUPER-OPTIMIZATION PIPELINE (NGINX & ENVOY PROXY)")
+    print("🚀 EDGE-GATEWAY LLM BINARY SUPER-OPTIMIZATION PIPELINE (NGINX & ENVOY PROXY)")
     print("=" * 80)
 
     for tgt in targets:

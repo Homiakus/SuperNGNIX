@@ -65,7 +65,7 @@ class EbpfXdpFilter:
 #include <linux/ip.h>
 #include <linux/tcp.h>
 
-SEC("xdp_tbank_proxy")
+SEC("xdp_edge_proxy")
 int xdp_proxy_filter(struct xdp_md *ctx) {
     void *data_end = (void *)(long)ctx->data_end;
     void *data = (void *)(long)ctx->data;

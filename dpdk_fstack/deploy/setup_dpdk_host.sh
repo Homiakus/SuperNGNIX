@@ -2,7 +2,7 @@
 set -eo pipefail
 
 echo "================================================================================"
-echo "⚡ T-BANK DPDK BINDING AND HUGEPAGES SETUP (PHASE 2 DEPLOYMENT)"
+echo "⚡ EDGE-GATEWAY DPDK BINDING AND HUGEPAGES SETUP (PHASE 2 DEPLOYMENT)"
 echo "================================================================================"
 
 PCI_ADDR="${1:-0000:03:00.0}"
@@ -23,7 +23,7 @@ echo "[+] Step 3: Unbinding NIC from standard Linux driver and binding to DPDK v
 echo "    PCI Device ${PCI_ADDR} successfully bound to VFIO-PCI (Userspace Poll-Mode Active)"
 
 echo "[+] Step 4: Initializing F-Stack Nginx gateway..."
-echo "    Config: /opt/tbank/dpdk/config/fstack.ini"
+echo "    Config: /opt/edgegate/dpdk/config/fstack.ini"
 echo "    Worker Cores: Isolated on CPU 1, 2, 3 (lcore_mask=0x0e)"
 echo "================================================================================"
 echo "✅ HARDWARE NETWORK SETUP COMPLETED: READY FOR 2.2M+ RPS / CORE WIRE-SPEED"

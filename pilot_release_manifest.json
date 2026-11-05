@@ -1,5 +1,5 @@
 {
-  "release_tag": "v1.0.0-tbank-superopt",
+  "release_tag": "v1.0.0-edgegate-superopt",
   "compliance": "Zero-Source-Code-Required (NDA Compliant)",
   "formal_verification": "100% BITWISE EQUIVALENCE PROVEN (Z3 UNSAT)",
   "binaries": {

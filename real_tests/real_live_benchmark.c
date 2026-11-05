@@ -12,7 +12,7 @@
 #include <immintrin.h>
 
 #define BUFFER_SIZE 4096
-const char *RESPONSE = "HTTP/1.1 200 OK\r\nContent-Length: 13\r\nContent-Type: text/plain\r\nConnection: keep-alive\r\n\r\nHello T-Bank!";
+const char *RESPONSE = "HTTP/1.1 200 OK\r\nContent-Length: 13\r\nContent-Type: text/plain\r\nConnection: keep-alive\r\n\r\nHello EdgeGateway!";
 
 // 1. Scalar HTTP Parser (Baseline - standard GCC/Clang loop)
 static inline int parse_http_scalar(const char *buf, int len) {
@@ -147,12 +147,12 @@ void *client_thread(void *arg) {
     // Header-heavy HTTP request (simulating banking trace headers)
     const char *http_req =
         "GET /api/v1/payment/status HTTP/1.1\r\n"
-        "Host: tbank.ru\r\n"
+        "Host: gateway.internal\r\n"
         "User-Agent: LoadGenerator/2.0\r\n"
-        "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.t-bank-token-sample\r\n"
-        "X-TBank-Trace-Id: 9bdfedbc-a60e-43c0-a269-ffd4a44c097f\r\n"
-        "X-TBank-Span-Id: 533a4a41c251d1ea\r\n"
-        "X-TBank-Client-Version: 2026.10.26\r\n"
+        "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.e30.edge-gateway-token-sample\r\n"
+        "X-Gateway-Trace-Id: 9bdfedbc-a60e-43c0-a269-ffd4a44c097f\r\n"
+        "X-Gateway-Span-Id: 533a4a41c251d1ea\r\n"
+        "X-Gateway-Client-Version: 2026.10.26\r\n"
         "Accept: application/json\r\n"
         "Connection: keep-alive\r\n\r\n";
     int req_len = strlen(http_req);

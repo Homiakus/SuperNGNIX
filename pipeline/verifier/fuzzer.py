@@ -23,9 +23,9 @@ class DifferentialFuzzer:
         
         # Test vectors
         mutations = [
-            "GET /api/v1/user HTTP/1.1\r\nHost: tbank.ru\r\nAuthorization: Bearer " + "A" * 512 + "\r\n\r\n",
+            "GET /api/v1/user HTTP/1.1\r\nHost: gateway.internal\r\nAuthorization: Bearer " + "A" * 512 + "\r\n\r\n",
             "POST /graphql HTTP/1.1\r\nContent-Length: 14\r\nTransfer-Encoding: chunked\r\n\r\n0\r\n\r\n",
-            "GET / HTTP/1.1\r\n" + "".join([f"X-TBank-Trace-{i}: trace-id-{i * 997}\r\n" for i in range(25)]) + "\r\n",
+            "GET / HTTP/1.1\r\n" + "".join([f"X-Gateway-Trace-{i}: trace-id-{i * 997}\r\n" for i in range(25)]) + "\r\n",
             "GET /\x00malformed HTTP/1.1\r\nBad-Header: value\r\n\r\n",
             "PRI * HTTP/2.0\r\n\r\nSM\r\n\r\n" # HTTP/2 connection preface
         ]

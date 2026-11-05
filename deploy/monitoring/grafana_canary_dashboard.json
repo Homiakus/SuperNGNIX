@@ -72,7 +72,7 @@
   ],
   "refresh": "5s",
   "schemaVersion": 38,
-  "title": "T-Bank Pilot Canary: Nginx/Envoy LLM Super-Optimization Stand",
+  "title": "EdgeGateway Pilot Canary: Nginx/Envoy LLM Super-Optimization Stand",
   "time": {
     "from": "now-30m",
     "to": "now"

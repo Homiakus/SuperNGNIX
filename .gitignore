@@ -4,3 +4,8 @@ real_tests/real_live_benchmark real_tests/real_cpu_hardware_bench
 __pycache__/
 *.py[cod]
 *$py.class
+
+bin/
+*.pyc
+__pycache__/
+

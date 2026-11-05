@@ -2,7 +2,7 @@
 set -eo pipefail
 
 echo "================================================================================"
-echo "⚡ T-BANK PRODUCTION GATEWAY [SUPER-OPTIMIZED BINARY RUNTIME]"
+echo "⚡ EDGE-GATEWAY PRODUCTION GATEWAY [SUPER-OPTIMIZED BINARY RUNTIME]"
 echo "================================================================================"
 echo "[+] CPU Architecture: $(uname -m)"
 echo "[+] Formal Verification: SMT Z3 Gatekeeper Certified (UNSAT)"
@@ -13,10 +13,10 @@ TARGET="${1:-nginx}"
 
 if [ "$TARGET" = "nginx" ]; then
     echo "[+] Starting Nginx Super-Optimized Service on port 8080/8443..."
-    exec /opt/tbank/bin/nginx "$@"
+    exec /opt/edgegate/bin/nginx "$@"
 elif [ "$TARGET" = "envoy" ]; then
     echo "[+] Starting Envoy Proxy Super-Optimized Service on port 10000..."
-    exec /opt/tbank/bin/envoy "$@"
+    exec /opt/edgegate/bin/envoy "$@"
 else
     echo "[!] Executing custom target: $TARGET"
     exec "$@"
